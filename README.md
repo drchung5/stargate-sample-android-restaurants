@@ -1,0 +1,1 @@
+# stargate-sample-android-restaurants
