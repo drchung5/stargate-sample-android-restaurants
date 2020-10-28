@@ -1,8 +1,15 @@
 package com.datastax.restaurant_reviews
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -17,10 +24,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        doAuth(
-            "https://9f31a5a3-b963-46d3-a43f-4b261f2bfb0c-us-east1.apps.astra.datastax.com/api/rest/v1/auth",
-            "",
-            "" )
+
+        val usernameEditText = findViewById<EditText>(R.id.editTextUsername)
+        val passwordEditText = findViewById<EditText>(R.id.editTextPassword)
+
+        val submitButton = findViewById<Button>(R.id.button1).also {
+            it.isEnabled = false
+            it.setOnClickListener(
+                View.OnClickListener {
+                    doAuth(
+                        "https://9f31a5a3-b963-46d3-a43f-4b261f2bfb0c-us-east1.apps.astra.datastax.com/api/rest/v1/auth",
+                        usernameEditText.text.toString(),
+                        passwordEditText.text.toString() )
+                }
+            )
+        }
+
+        usernameEditText.doAfterTextChanged { submitButton.isEnabled = true }
+        passwordEditText.doAfterTextChanged { submitButton.isEnabled = true }
 
     }
 
