@@ -41,30 +41,6 @@ class MainActivity : AppCompatActivity() {
             it.doAfterTextChanged { submitButton.isEnabled = true }
         }
 
-
-//
-//        val foobar = gson.fromJson("""{"foo":"bar"}""",MainActivity.Foobar::class.java)
-//        val usernameEditText = findViewById<EditText>(R.id.editTextUsername).also {
-//            it.setText( foobar.foo )
-//        }
-//
-//        val jsonString = gson.toJson(Foobar("bar"))
-//        val passwordEditText = findViewById<EditText>(R.id.editTextUsername).also {
-//            it.setText(jsonString)
-//        }
-
-
-//        val foobar = gson.fromJson(json ,Foobar::class.java)
-//
-//        val usernameEditText = findViewById<EditText>(R.id.editTextUsername).also {
-//            if( foobar == null ) {
-//                it.setText("foobar is null")
-//            } else {
-//                it.setText( foobar.toString() )
-//            }
-//        }
-
-
         submitButton = findViewById<Button>(R.id.button1).also {
             it.isEnabled = false
             it.setOnClickListener(
